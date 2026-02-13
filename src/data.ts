@@ -310,3 +310,30 @@ export const BUILDING_NOW = [
     icon: Briefcase,
   },
 ];
+
+export const BLOG_POSTS = [
+  {
+    title: 'Building a 30,000-Trade Autonomous Trading Bot',
+    date: 'Feb 2026',
+    readTime: '8 min',
+    excerpt: 'How I built and deployed a 24/7 cryptocurrency trading system with 23 ML strategies, real-time regime detection, and a live performance dashboard.',
+    tags: ['Python', 'ML', 'Trading'],
+    href: '#'
+  },
+  {
+    title: 'Automating Job Applications Across 6 ATS Platforms',
+    date: 'Feb 2026',
+    readTime: '6 min',
+    excerpt: 'Deep dive into building an AI agent that automatically applies to jobs across multiple platforms while maintaining personalization and avoiding detection.',
+    tags: ['Automation', 'AI', 'Career'],
+    href: '#'
+  },
+  {
+    title: 'Why I Built My Own AI Assistant',
+    date: 'Feb 2026',
+    readTime: '5 min',
+    excerpt: 'From Telegram to Discord to Signal — building Jarvis, a persistent memory AI assistant that runs my digital life across multiple platforms.',
+    tags: ['AI', 'TypeScript', 'Productivity'],
+    href: '#'
+  }
+];

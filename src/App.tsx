@@ -18,6 +18,8 @@ import { NAV_LINKS, HERO, EXPERIENCE, PROJECTS, TECH_STACK } from './data';
 import LiveTicker from './LiveTicker';
 import ScrollProgress from './ScrollProgress';
 import Certifications from './Certifications';
+import Blog from './Blog';
+import GitHubActivity from './GitHubActivity';
 import clsx from 'clsx';
 
 const fadeInUp = {
@@ -65,6 +67,7 @@ export default function App() {
   const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' });
   const [contactError, setContactError] = useState<string | null>(null);
   const [contactSuccess, setContactSuccess] = useState(false);
+  const [contactLoading, setContactLoading] = useState(false);
 
   const athleteImages = [`${import.meta.env.BASE_URL}basketball.jpg`, `${import.meta.env.BASE_URL}golf.jpg`];
   const portraitImage = `${import.meta.env.BASE_URL}portrait.jpg`;
@@ -95,21 +98,49 @@ export default function App() {
     setContactForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setContactError(null);
     setContactSuccess(false);
+    setContactLoading(true);
+    
     if (!contactForm.name.trim() || !contactForm.email.trim() || !contactForm.message.trim()) {
       setContactError('Please fill in all fields.');
+      setContactLoading(false);
       return;
     }
+    
     const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
     if (!emailPattern.test(contactForm.email.trim())) {
       setContactError('Please enter a valid email.');
+      setContactLoading(false);
       return;
     }
-    setContactSuccess(true);
-    setContactForm({ name: '', email: '', message: '' });
+
+    try {
+      const response = await fetch('https://formspree.io/f/xpwzgvqk', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: contactForm.name.trim(),
+          email: contactForm.email.trim(),
+          message: contactForm.message.trim(),
+        }),
+      });
+
+      if (response.ok) {
+        setContactSuccess(true);
+        setContactForm({ name: '', email: '', message: '' });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      setContactError('Failed to send message. Please try again.');
+    } finally {
+      setContactLoading(false);
+    }
   };
 
   const filteredProjects = projectFilter === 'All' ? PROJECTS : PROJECTS.filter((p) => p.category === projectFilter);
@@ -651,6 +682,12 @@ export default function App() {
       {/* Education & Credentials (merged) */}
       <Certifications />
 
+      {/* GitHub Activity */}
+      <GitHubActivity />
+
+      {/* Blog */}
+      <Blog />
+
       {/* Duality - On & Off The Court */}
       <section className="flex flex-col md:flex-row min-h-[600px]" id="duality">
         <div className="flex-1 relative flex flex-col justify-center p-12 md:p-20 border-b md:border-b-0 md:border-r border-slate-800/50 overflow-hidden group">
@@ -752,10 +789,11 @@ export default function App() {
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-2">
                 <button
                   type="submit"
-                  className="btn-primary inline-flex items-center gap-3 px-8 py-3.5 text-white font-bold text-base rounded-full"
+                  disabled={contactLoading}
+                  className="btn-primary inline-flex items-center gap-3 px-8 py-3.5 text-white font-bold text-base rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Mail size={18} />
-                  Send message
+                  {contactLoading ? 'Sending...' : 'Send message'}
                 </button>
                 <a
                   href="https://www.linkedin.com/in/peyton-campbell/"
