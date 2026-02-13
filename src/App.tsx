@@ -16,6 +16,8 @@ import {
 import { NAV_LINKS, HERO, EXPERIENCE, PROJECTS, EDUCATION, SCOUTING_REPORT, HIGHLIGHTS, TECH_STACK, BUILDING_NOW, SKILLS } from './data';
 import LiveTicker from './LiveTicker';
 import RadarChart from './RadarChart';
+import ScrollProgress from './ScrollProgress';
+import Certifications from './Certifications';
 import clsx from 'clsx';
 
 const fadeInUp = {
@@ -106,6 +108,29 @@ export default function App() {
 
   return (
     <div className="min-h-screen text-slate-300 selection:bg-blue-500/30 selection:text-white">
+      <ScrollProgress />
+
+      {/* Availability Banner */}
+      <div className="fixed top-0 left-0 right-0 z-[55] pointer-events-none">
+        <motion.div
+          initial={{ y: -40, opacity: 0 }}
+          animate={{ y: scrolled ? -40 : 0, opacity: scrolled ? 0 : 1 }}
+          transition={{ duration: 0.3 }}
+          className="flex justify-center pt-2"
+        >
+          <a
+            href="#contact"
+            className="pointer-events-auto inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-green-500/10 border border-green-500/25 text-green-400 hover:bg-green-500/15 hover:border-green-400/40 transition-all duration-300 backdrop-blur-sm"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+            </span>
+            Open to opportunities — Available for full-time & consulting
+          </a>
+        </motion.div>
+      </div>
+
       {/* Navbar */}
       <nav
         className={clsx(
@@ -787,6 +812,9 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      {/* Certifications */}
+      <Certifications />
 
       {/* Duality - On & Off The Court */}
       <section className="flex flex-col md:flex-row min-h-[600px]" id="duality">
