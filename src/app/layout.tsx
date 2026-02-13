@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,38 +13,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Campbell Solutions | AI Automation Consulting",
+  title: "Peyton Campbell | Full Stack Developer & AI Engineer",
   description:
-    "AI automation that actually works. We turn manual processes into intelligent systems. Custom AI agents, workflow automation, and data analytics for your business.",
+    "Full Stack Developer specializing in AI/ML systems, trading bots, and intelligent automation. CS from Western, AI/ML cert from Fanshawe.",
   keywords: [
-    "AI automation",
-    "consulting",
-    "AI agents",
-    "workflow automation",
-    "data analytics",
+    "full stack developer",
+    "AI engineer",
     "machine learning",
+    "trading bot",
+    "Python",
+    "TypeScript",
+    "React",
+    "Next.js",
   ],
   openGraph: {
-    title: "Campbell Solutions | AI Automation Consulting",
+    title: "Peyton Campbell | Full Stack Developer & AI Engineer",
     description:
-      "AI automation that actually works. Custom AI agents, workflow automation, and data analytics.",
-    url: "https://campbellsolutions.com",
-    siteName: "Campbell Solutions",
+      "Building production AI systems — trading bots, intelligent agents, and automation that works.",
     type: "website",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Campbell Solutions",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Campbell Solutions | AI Automation Consulting",
-    description: "AI automation that actually works.",
-    images: ["/og-image.png"],
   },
   robots: { index: true, follow: true },
 };
@@ -62,8 +46,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );

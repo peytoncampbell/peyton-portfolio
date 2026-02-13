@@ -1,41 +1,45 @@
-const steps = [
+const timeline = [
   {
-    num: "01",
-    title: "Discovery",
-    desc: "We dig into your workflows, pain points, and goals. No generic questionnaires — real conversations about what's slowing you down.",
+    year: "2026",
+    title: "AI Trading Systems & Consulting",
+    desc: "Built autonomous BTC trading bot (62K+ trades, 23 ML strategies), Polymarket trading bot, AI personal assistant, and launched Campbell Solutions consulting.",
   },
   {
-    num: "02",
-    title: "Build",
-    desc: "Custom solution, not off-the-shelf. We architect and develop the exact system your business needs, with you in the loop at every step.",
+    year: "2025",
+    title: "Full Stack Developer — OES",
+    desc: "Building and maintaining educational technology platforms. Full stack development with modern web technologies.",
   },
   {
-    num: "03",
-    title: "Deploy & Iterate",
-    desc: "Launch, monitor, and continuously improve. We don't disappear after delivery — we make sure it works in the real world.",
+    year: "2024",
+    title: "AI & Machine Learning — Fanshawe College",
+    desc: "Completed AI/ML certification covering supervised/unsupervised learning, neural networks, NLP, and computer vision.",
+  },
+  {
+    year: "2023",
+    title: "Computer Science — Western University",
+    desc: "CS degree with focus on algorithms, data structures, and software engineering. Varsity basketball player.",
   },
 ];
 
 export default function Process() {
   return (
-    <section id="process" className="px-6 py-24">
-      <div className="mx-auto max-w-6xl">
+    <section id="timeline" className="px-6 py-24">
+      <div className="mx-auto max-w-3xl">
         <h2 className="text-center text-3xl font-bold sm:text-4xl">
-          How It Works
+          Timeline
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-center text-muted">
-          Simple process. Serious results.
-        </p>
-        <div className="mt-16 grid gap-8 md:grid-cols-3">
-          {steps.map((s) => (
-            <div key={s.num} className="relative">
-              <span className="text-5xl font-bold text-accent/20">
-                {s.num}
+        <div className="mt-16 space-y-8">
+          {timeline.map((t) => (
+            <div key={t.year} className="flex gap-6">
+              <span className="shrink-0 font-mono text-sm font-semibold text-accent">
+                {t.year}
               </span>
-              <h3 className="mt-2 text-xl font-semibold">{s.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted">
-                {s.desc}
-              </p>
+              <div className="border-l border-card-border pl-6">
+                <h3 className="text-lg font-semibold">{t.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">
+                  {t.desc}
+                </p>
+              </div>
             </div>
           ))}
         </div>

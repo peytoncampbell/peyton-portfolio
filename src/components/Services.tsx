@@ -1,47 +1,59 @@
-const services = [
+const skills = [
   {
-    icon: "⚡",
-    title: "AI Workflow Automation",
-    desc: "Automate repetitive business processes with intelligent systems that learn, adapt, and execute — so your team can focus on what matters.",
+    category: "Languages",
+    items: ["Python", "TypeScript", "JavaScript", "SQL", "C#", "Java"],
   },
   {
-    icon: "🤖",
-    title: "Custom AI Agents",
-    desc: "Purpose-built AI assistants tailored to your business. From customer support to internal ops, we build agents that get the job done.",
+    category: "AI / ML",
+    items: ["scikit-learn", "XGBoost", "RandomForest", "Feature engineering", "Model pipelines", "Claude API"],
   },
   {
-    icon: "📊",
-    title: "Data & Analytics",
-    desc: "Prediction models, real-time dashboards, and actionable insights. Turn your data into decisions.",
+    category: "Frontend",
+    items: ["React", "Next.js", "Tailwind CSS", "HTML/CSS"],
   },
   {
-    icon: "🧠",
-    title: "Tech Consulting",
-    desc: "Strategy, architecture, and implementation. We help you navigate the AI landscape and build the right thing the right way.",
+    category: "Backend & Data",
+    items: ["Node.js", "REST APIs", "PostgreSQL", "Web scraping", "Playwright"],
+  },
+  {
+    category: "DevOps & Infra",
+    items: ["Git", "Vercel", "Cloudflare", "Docker", "WireGuard", "Windows Server"],
+  },
+  {
+    category: "Trading & Finance",
+    items: ["Binance API", "OKX API", "Polymarket CLOB", "Web3/Polygon", "Technical analysis"],
   },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="px-6 py-24">
+    <section id="skills" className="px-6 py-24">
       <div className="mx-auto max-w-6xl">
         <h2 className="text-center text-3xl font-bold sm:text-4xl">
-          What We Do
+          Tech Stack
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-center text-muted">
-          End-to-end AI solutions — from strategy to deployment.
+          What I work with day-to-day.
         </p>
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((s) => (
+        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {skills.map((s) => (
             <div
-              key={s.title}
-              className="group rounded-xl border border-card-border bg-card p-6 transition-colors hover:border-accent/40"
+              key={s.category}
+              className="rounded-xl border border-card-border bg-card p-6 transition-colors hover:border-accent/40"
             >
-              <span className="text-3xl">{s.icon}</span>
-              <h3 className="mt-4 text-lg font-semibold">{s.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
-                {s.desc}
-              </p>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
+                {s.category}
+              </h3>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {s.items.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-card-border bg-background px-3 py-1 text-sm text-muted"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
